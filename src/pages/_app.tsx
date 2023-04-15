@@ -1,20 +1,30 @@
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import { Silkscreen } from "next/font/google";
 
 import { api } from "~/utils/api";
+import Layout from "~/components/Layout";
 
 import "~/styles/globals.css";
 
-const MyApp: AppType<{ session: Session | null }> = ({
+const silkscreen = Silkscreen({
+  subsets: ["latin"],
+  variable: "--font-silkscreen",
+  weight: "400",
+});
+
+const App: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Layout font={silkscreen}>
+        <Component {...pageProps} />
+      </Layout>
     </SessionProvider>
   );
 };
 
-export default api.withTRPC(MyApp);
+export default api.withTRPC(App);
