@@ -11,10 +11,11 @@ datasource db {
 }
 
 model Game {
-    gameId    String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    turns     Turn[]
-    player    User     @relation(fields: [gameId], references: [id])
+    gameId      String   @id @default(cuid())
+    createdAt   DateTime @default(now())
+    createdById String
+    turns       Turn[]
+    user        User     @relation(fields: [createdById], references: [id])
 }
 
 model Turn {
@@ -22,7 +23,7 @@ model Turn {
     createdAt DateTime @default(now())
     x         Int
     y         Int
-    isPlayer  Boolean
+    isUser    Boolean
     game      Game     @relation(fields: [turnId], references: [gameId])
     comment   String?
 }
@@ -63,6 +64,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     games         Game[]
+    activeGameId  String?
     wins          Int       @default(0)
 }
 
