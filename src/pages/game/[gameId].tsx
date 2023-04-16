@@ -1,5 +1,6 @@
 import Head from "next/head";
 import type { NextPage } from "next";
+import GameArea from "~/components/GameArea";
 
 const Game: NextPage = () => {
   return (
@@ -7,6 +8,7 @@ const Game: NextPage = () => {
       <Head>
         <title>Game</title>
       </Head>
+      <GameArea />
     </>
   );
 };

@@ -23,8 +23,9 @@ model Turn {
     createdAt DateTime @default(now())
     x         Int
     y         Int
-    isUser    Boolean
-    game      Game     @relation(fields: [turnId], references: [gameId])
+    isByUser  Boolean
+    gameId    String
+    game      Game     @relation(fields: [gameId], references: [gameId])
     comment   String?
 }
 
