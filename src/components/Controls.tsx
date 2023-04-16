@@ -7,12 +7,19 @@ const DirectionButton: React.FC<{
   return (
     <button
       className={classNames(
-        "flex h-9 w-9 items-center justify-center rounded-sm shadow-md transition-all",
-        "border-x border-b-2 border-x-purple-500 border-b-purple-400 border-t-violet-950 bg-gradient-to-t from-violet-700 to-violet-900 text-gray-200",
-        "active:border-b-0 active:border-t-2 active:border-x-violet-900 active:text-gray-300 active:shadow-none",
+        "group relative flex h-9 w-9 items-center justify-center rounded-sm shadow-md transition-all",
+        "border-x border-b-4 border-x-purple-500 border-b-purple-900 border-t-violet-950 bg-violet-800 text-gray-200",
+        "active:border-b-0 active:border-t-4 active:border-x-violet-900 active:bg-violet-900 active:text-gray-300 active:shadow-none",
         extraClasses
       )}
     >
+      <div
+        className={classNames(
+          "absolute h-full w-full border-b-2 border-b-purple-400 group-active:border-transparent",
+          extraClasses
+        )}
+      ></div>
+
       {children}
     </button>
   );
@@ -25,12 +32,13 @@ const ActionButton: React.FC<{
   return (
     <button
       className={classNames(
-        "flex items-center justify-center rounded-full shadow-md transition-all",
-        "border-x border-b-2 border-x-purple-500 border-b-purple-400 border-t-violet-950 bg-gradient-to-t from-violet-700 to-violet-900 text-gray-200",
-        "active:border-b-0 active:border-t-2 active:border-x-violet-900 active:text-gray-300 active:shadow-none",
+        "group relative flex items-center justify-center rounded-full shadow-md transition-all",
+        "border-x border-b-4 border-x-purple-500 border-b-purple-900 border-t-violet-950 bg-violet-800 text-gray-200",
+        "active:border-b-0 active:border-t-4 active:border-x-violet-900 active:bg-violet-900 active:text-gray-300 active:shadow-none",
         extraClasses
       )}
     >
+      <div className="absolute h-full w-full rounded-full border-b-2 border-b-purple-400 transition-all group-active:border-transparent"></div>
       {children}
     </button>
   );
@@ -38,7 +46,7 @@ const ActionButton: React.FC<{
 
 const Controls = () => {
   return (
-    <div className="mb-6 mt-4 flex items-center justify-between">
+    <div className="mb-6 mt-5 flex items-center justify-between px-4">
       <div className="flex flex-col items-center gap-[1px]">
         <DirectionButton extraClasses="rounded-t-xl">
           <span className="sr-only">Up</span>
