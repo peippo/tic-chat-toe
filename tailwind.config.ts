@@ -5,7 +5,10 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        pressed: "inset 0 -10px 20px -5px rgb(0 0 0 / 0.5)",
+        button:
+          "inset 0 -15px 5px -5px rgb(216 180 254 / 0.4), inset 0 -2px 1px 2px rgb(216 180 254 / 0.4), inset 4px 4px 1px 2px rgb(216 180 254 / 0.1)",
+        "button-active":
+          "inset 0 -10px 20px -5px rgb(0 0 0 / 0.5), inset 0 6px 2px 0 rgb(0 0 0 / 0.5)",
       },
     },
   },

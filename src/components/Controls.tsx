@@ -9,13 +9,13 @@ const DirectionButton: React.FC<{
       className={classNames(
         "group relative flex h-9 w-9 items-center justify-center rounded-sm shadow-md transition-all",
         "border-x border-b-4 border-x-purple-500 border-b-purple-900 border-t-violet-950 bg-violet-800 text-gray-200",
-        "active:border-b-0 active:border-t-4 active:border-x-violet-900 active:bg-violet-900 active:text-gray-300 active:shadow-none",
+        "active:border-b active:border-x-purple-500 active:border-b-purple-400 active:bg-violet-900 active:text-gray-300 active:shadow-none",
         extraClasses
       )}
     >
       <div
         className={classNames(
-          "absolute h-full w-full border-b-2 border-t-2 border-b-purple-300 border-t-purple-500 active:shadow-pressed group-active:border-transparent",
+          "absolute h-full w-full border-b border-b-purple-300 border-t-purple-500 shadow-button transition-all group-active:border-transparent group-active:shadow-button-active",
           extraClasses
         )}
       ></div>
@@ -32,13 +32,13 @@ const ActionButton: React.FC<{
   return (
     <button
       className={classNames(
-        "group relative flex items-center justify-center rounded-full shadow-md transition-all",
+        "group relative flex items-center justify-center rounded-full shadow-md transition-all ease-in-out",
         "border-x border-b-4 border-x-purple-500 border-b-purple-900 border-t-violet-950 bg-violet-800 text-gray-200",
-        "active:border-b-0 active:border-t-4 active:border-x-violet-900 active:bg-violet-900 active:text-gray-300 active:shadow-none",
+        "active:border-b active:border-x-purple-500 active:border-b-purple-400 active:bg-violet-900 active:text-gray-300 active:shadow-none",
         extraClasses
       )}
     >
-      <div className="absolute h-full w-full rounded-full border-b-2 border-t-2 border-b-purple-300 border-t-purple-500 transition-all active:shadow-pressed group-active:border-transparent"></div>
+      <div className="absolute h-full w-full rounded-full border-b border-b-purple-300 shadow-button transition-all ease-in-out group-active:border-transparent group-active:shadow-button-active"></div>
       {children}
     </button>
   );
