@@ -15,7 +15,7 @@ const DirectionButton: React.FC<{
     >
       <div
         className={classNames(
-          "absolute h-full w-full border-b-2 border-b-purple-400 group-active:border-transparent",
+          "absolute h-full w-full border-b-2 border-t-2 border-b-purple-300 border-t-purple-500 active:shadow-pressed group-active:border-transparent",
           extraClasses
         )}
       ></div>
@@ -38,7 +38,7 @@ const ActionButton: React.FC<{
         extraClasses
       )}
     >
-      <div className="absolute h-full w-full rounded-full border-b-2 border-b-purple-400 transition-all group-active:border-transparent"></div>
+      <div className="absolute h-full w-full rounded-full border-b-2 border-t-2 border-b-purple-300 border-t-purple-500 transition-all active:shadow-pressed group-active:border-transparent"></div>
       {children}
     </button>
   );
@@ -111,6 +111,7 @@ const Controls = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
             width="14"
+            className="-rotate-45"
           >
             <path
               fill="currentColor"

@@ -14,9 +14,9 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center gap-2 p-4">
         <button
-          className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20 disabled:cursor-not-allowed disabled:text-slate-500 disabled:hover:bg-white/10"
+          className="rounded-full bg-white/20 px-10 py-3 font-semibold text-gray-800 no-underline transition hover:bg-white/30 disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-gray-500/60 disabled:hover:bg-white/10"
           onClick={() => createGame.mutate()}
           disabled={!sessionData}
         >
@@ -26,11 +26,11 @@ const Home: NextPage = () => {
         </button>
 
         <div className="mt-16 flex flex-col items-center justify-center gap-4">
-          <p className="text-center text-white">
+          <p className="text-center text-gray-800">
             {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
           </p>
           <button
-            className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+            className="rounded-full bg-white/20 px-10 py-3 font-semibold text-gray-800 no-underline transition hover:bg-white/30"
             onClick={sessionData ? () => void signOut() : () => void signIn()}
           >
             {sessionData ? "Sign out" : "Sign in"}
