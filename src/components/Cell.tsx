@@ -1,13 +1,14 @@
 import { api } from "~/utils/api";
 import useGame from "~/hooks/useGame";
+import type { Cell } from "~/types";
 
-const Cell: React.FC<{ x: number; y: number }> = ({ x, y }) => {
+const Cell: React.FC<Cell> = ({ x, y }) => {
   const utils = api.useContext();
   const { game } = useGame();
 
   const matchingTurn = game?.turns.find((turn) => turn.x === x && turn.y === y);
 
-  const submitTurn = api.game.submitTurn.useMutation({
+  const submitUserTurn = api.turn.submitUserTurn.useMutation({
     onSuccess: () => {
       // FIXME: Update query cache w/ useContext setData helper instead of refetching
       // https://trpc.io/docs/reactjs/usecontext
@@ -29,11 +30,10 @@ const Cell: React.FC<{ x: number; y: number }> = ({ x, y }) => {
     <button
       className="absolute inset-0 hover:bg-gray-400"
       onClick={() =>
-        submitTurn.mutate({
+        submitUserTurn.mutate({
           gameId: game?.gameId as string,
           x: x,
           y: y,
-          isByUser: true,
         })
       }
     >

@@ -2,6 +2,7 @@ import Head from "next/head";
 import classNames from "classnames";
 import { NextFont } from "next/dist/compiled/@next/font";
 import Controls from "./Controls";
+import ApiTest from "./ApiTest";
 
 type Props = {
   children: React.ReactNode;
@@ -41,6 +42,7 @@ const Layout: React.FC<Props> = ({ children, font }) => {
           </div>
           <Controls />
         </div>
+        <ApiTest />
       </main>
     </>
   );

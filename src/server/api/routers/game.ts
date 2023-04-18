@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 import {
   createTRPCRouter,
   publicProcedure,
@@ -72,31 +71,5 @@ export const gameRouter = createTRPCRouter({
       }
 
       return game;
-    }),
-
-  submitTurn: protectedProcedure
-    .input(
-      z.object({
-        gameId: z.string(),
-        x: z.number(),
-        y: z.number(),
-        isByUser: z.boolean().optional(),
-        comment: z.string().optional(),
-      })
-    )
-    .mutation(({ ctx, input }) => {
-      const { gameId, x, y, isByUser = false, comment = null } = input;
-
-      const newTurn = ctx.prisma.turn.create({
-        data: {
-          gameId: gameId,
-          x: x,
-          y: y,
-          isByUser: isByUser,
-          comment: comment,
-        },
-      });
-
-      return newTurn;
     }),
 });
