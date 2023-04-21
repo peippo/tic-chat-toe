@@ -16,6 +16,7 @@ model Game {
     createdById String
     turns       Turn[]
     user        User     @relation(fields: [createdById], references: [id])
+    wonByUser   Boolean?
 }
 
 model Turn {

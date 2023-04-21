@@ -8,6 +8,7 @@ const Cell: React.FC<Cell> = ({ x, y }) => {
   const { game } = useGame();
   const { submitUserTurn } = useSubmitUserTurn();
   const [isLoadingOpponentTurn] = useAtom(isLoadingOpponentTurnAtom);
+  const isGameFinished = Boolean(game && game?.wonByUser !== null);
 
   const matchingTurn = game?.turns.find((turn) => turn.x === x && turn.y === y);
 
@@ -22,7 +23,7 @@ const Cell: React.FC<Cell> = ({ x, y }) => {
   return (
     <button
       className="absolute inset-0 hover:bg-gray-400 disabled:hover:bg-transparent"
-      disabled={isLoadingOpponentTurn}
+      disabled={isLoadingOpponentTurn || isGameFinished}
       onClick={() =>
         submitUserTurn({
           gameId: game?.gameId as string,

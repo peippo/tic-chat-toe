@@ -72,4 +72,38 @@ export const gameRouter = createTRPCRouter({
 
       return game;
     }),
+
+  updateWinner: protectedProcedure
+    .input(z.object({ gameId: z.string(), wonByUser: z.boolean() }))
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+
+      if (!user) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+      }
+
+      await ctx.prisma.game.update({
+        where: {
+          gameId: input.gameId,
+        },
+        data: {
+          wonByUser: input.wonByUser,
+        },
+      });
+
+      await ctx.prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          activeGameId: null,
+        },
+      });
+    }),
 });

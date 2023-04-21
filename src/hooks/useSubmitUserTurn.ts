@@ -1,21 +1,20 @@
 import { api } from "~/utils/api";
 import useGame from "~/hooks/useGame";
-import useQueryOpponentTurn, {
-  isLoadingOpponentTurnAtom,
-} from "~/hooks/useQueryOpponentTurn";
+import useQueryOpponentTurn from "~/hooks/useQueryOpponentTurn";
 import { playerHasWinningLine } from "~/utils/game";
-import { useAtom } from "jotai";
 
 const useSubmitUserTurn = () => {
   const utils = api.useContext();
   const { game } = useGame();
   const { queryOpponentTurn } = useQueryOpponentTurn();
-  const [_, setIsLoadingOpponentTurn] = useAtom(isLoadingOpponentTurnAtom);
+
+  const { mutate: updateWinner } = api.game.updateWinner.useMutation({
+    onSuccess: () => {
+      utils.invalidate();
+    },
+  });
 
   const { mutate: submitUserTurn } = api.turn.submitUserTurn.useMutation({
-    onMutate: () => {
-      setIsLoadingOpponentTurn(true);
-    },
     onSuccess: (newTurn) => {
       if (game?.gameId) {
         const gameData = utils.game.getGame.getData({ gameId: game.gameId });
@@ -34,7 +33,7 @@ const useSubmitUserTurn = () => {
         const userTurns = gameData?.turns.filter((turn) => turn.isByUser);
 
         if (userTurns && playerHasWinningLine(userTurns)) {
-          console.log("User won!");
+          updateWinner({ gameId: game?.gameId, wonByUser: true });
         } else {
           queryOpponentTurn({
             gameId: game?.gameId,

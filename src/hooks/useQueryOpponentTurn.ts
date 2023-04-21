@@ -8,9 +8,18 @@ export const isLoadingOpponentTurnAtom = atom(false);
 const useQueryOpponentTurn = () => {
   const utils = api.useContext();
   const { game } = useGame();
-  const [_, setIsLoading] = useAtom(isLoadingOpponentTurnAtom);
+  const [, setIsLoading] = useAtom(isLoadingOpponentTurnAtom);
+
+  const { mutate: updateWinner } = api.game.updateWinner.useMutation({
+    onSuccess: () => {
+      utils.invalidate();
+    },
+  });
 
   const { mutate: queryOpponentTurn } = api.turn.queryOpponentTurn.useMutation({
+    onMutate: () => {
+      setIsLoading(true);
+    },
     onSuccess: (newTurn) => {
       if (game?.gameId) {
         const gameData = utils.game.getGame.getData({ gameId: game.gameId });
@@ -29,10 +38,10 @@ const useQueryOpponentTurn = () => {
         const opponentTurns = gameData?.turns.filter((turn) => !turn.isByUser);
 
         if (opponentTurns && playerHasWinningLine(opponentTurns)) {
-          console.log("Opponent won!");
-        } else {
-          setIsLoading(false);
+          updateWinner({ gameId: game?.gameId, wonByUser: false });
         }
+
+        setIsLoading(false);
       }
     },
   });
