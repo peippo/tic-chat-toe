@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   const router = useRouter();
   const { mutate: createGame } = api.game.createGame.useMutation({
     onSuccess: (data) => {
-      router.push(`/game/${data.gameId}`);
+      router.push(`/play/${data.gameId}`);
     },
   });
 
