@@ -31,7 +31,7 @@ const Layout: React.FC<Props> = ({ children, font }) => {
             <div className="absolute -bottom-[2px] right-7 h-[2px] w-40 bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400"></div>
 
             {/* screen */}
-            <div className="h-96 w-64 rounded-sm border-b border-b-gray-400 bg-gradient-to-b from-gray-400 to-gray-500">
+            <div className="relative h-96 w-64 rounded-sm border-b border-b-gray-400 bg-gradient-to-b from-gray-400 to-gray-500">
               {children}
             </div>
             <h1 className="pointer-events-none text-center text-lg tracking-tight text-slate-400">

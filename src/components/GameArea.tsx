@@ -26,7 +26,7 @@ const GameArea = () => {
             <Cell x={2} y={1} />
           </td>
         </tr>
-        <tr className="border-b-8 border-gray-600">
+        <tr className="border-b-8 border-gray-700">
           <td className="relative h-20 w-1/3 border-r-2 border-gray-600 text-center">
             <Cell x={0} y={2} />
           </td>
