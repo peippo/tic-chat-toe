@@ -1,22 +1,15 @@
-import { api } from "~/utils/api";
-import useGame from "~/hooks/useGame";
 import type { Cell } from "~/types";
+import useGame from "~/hooks/useGame";
+import useSubmitUserTurn from "~/hooks/useSubmitUserTurn";
+import { useAtom } from "jotai";
+import { isLoadingOpponentTurnAtom } from "~/hooks/useQueryOpponentTurn";
 
 const Cell: React.FC<Cell> = ({ x, y }) => {
-  const utils = api.useContext();
   const { game } = useGame();
+  const { submitUserTurn } = useSubmitUserTurn();
+  const [isLoadingOpponentTurn] = useAtom(isLoadingOpponentTurnAtom);
 
   const matchingTurn = game?.turns.find((turn) => turn.x === x && turn.y === y);
-
-  const submitUserTurn = api.turn.submitUserTurn.useMutation({
-    onSuccess: () => {
-      // FIXME: Update query cache w/ useContext setData helper instead of refetching
-      // https://trpc.io/docs/reactjs/usecontext
-      if (game?.gameId) {
-        utils.game.getGame.refetch({ gameId: game?.gameId });
-      }
-    },
-  });
 
   if (matchingTurn) {
     return (
@@ -28,9 +21,10 @@ const Cell: React.FC<Cell> = ({ x, y }) => {
 
   return (
     <button
-      className="absolute inset-0 hover:bg-gray-400"
+      className="absolute inset-0 hover:bg-gray-400 disabled:hover:bg-transparent"
+      disabled={isLoadingOpponentTurn}
       onClick={() =>
-        submitUserTurn.mutate({
+        submitUserTurn({
           gameId: game?.gameId as string,
           x: x,
           y: y,

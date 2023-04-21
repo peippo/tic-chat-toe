@@ -34,7 +34,7 @@ export const turnRouter = createTRPCRouter({
       return newTurn;
     }),
 
-  submitOpponentTurn: protectedProcedure
+  queryOpponentTurn: protectedProcedure
     .input(
       z.object({
         gameId: z.string(),
@@ -135,15 +135,13 @@ export const turnRouter = createTRPCRouter({
         }
       }
 
+      /* prettier-ignore */
       if (env.NODE_ENV === "development") {
         console.log("------------------------");
         console.log("HISTORY: ", loggedMessages);
         console.log("PROMPT:  ", prompt);
         console.log("REPLY:   ", response);
-        console.log(
-          "MOVE:    ",
-          `${JSON.stringify(opponentTurn)} (${responseType})`
-        );
+        console.log("MOVE:    ", `${JSON.stringify(opponentTurn)} (${responseType})`);
         console.log("------------------------");
       }
 

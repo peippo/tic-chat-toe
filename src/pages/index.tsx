@@ -6,7 +6,7 @@ import { type NextPage } from "next";
 const Home: NextPage = () => {
   const { data: sessionData } = useSession();
   const router = useRouter();
-  const createGame = api.game.createGame.useMutation({
+  const { mutate: createGame } = api.game.createGame.useMutation({
     onSuccess: (data) => {
       router.push(`/game/${data.gameId}`);
     },
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <div className="flex flex-col items-center gap-2 p-4">
         <button
           className="rounded-full bg-white/20 px-10 py-3 font-semibold text-gray-800 no-underline transition hover:bg-white/30 disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-gray-500/60 disabled:hover:bg-white/10"
-          onClick={() => createGame.mutate()}
+          onClick={() => createGame()}
           disabled={!sessionData}
         >
           {sessionData && sessionData.user?.activeGameId
