@@ -9,6 +9,8 @@ export default {
         button: "0 2px 0 rgba(0, 0, 0, 0.1)",
       },
       boxShadow: {
+        cell: "inset 3px 3px 0 0 rgb(0 0 0 / 0.1)",
+        "cell-active": "inset -2px -2px 0 0 rgb(255 255 255 / 0.25)",
         button:
           "inset 0 -15px 5px -5px rgb(216 180 254 / 0.4), inset 0 -2px 1px 2px rgb(216 180 254 / 0.4), inset 4px 4px 1px 2px rgb(216 180 254 / 0.1)",
         "button-active":

@@ -4,14 +4,19 @@ import classNames from "classnames";
 import useGame from "~/hooks/useGame";
 import { isLoadingOpponentTurnAtom } from "~/hooks/useQueryOpponentTurn";
 import useObserveHeight from "~/hooks/useObserveHeight";
+import { currentTurnNumberAtom } from "./TurnSlider";
 
-const Comment = () => {
+const Comment: React.FC<{ isViewMode?: boolean }> = ({ isViewMode }) => {
   const { game } = useGame();
   const [isLoading] = useAtom(isLoadingOpponentTurnAtom);
+  const [currentTurnNumber] = useAtom(currentTurnNumberAtom);
   const contentRef = useRef(null);
   const height = useObserveHeight(contentRef);
 
-  const opponentTurns = game?.turns.filter((turn) => !turn.isByUser);
+  const turns = isViewMode
+    ? game?.turns.slice(0, currentTurnNumber) ?? []
+    : game?.turns ?? [];
+  const opponentTurns = turns?.filter((turn) => !turn.isByUser);
   const latestOpponentTurn = opponentTurns?.pop();
 
   return (
