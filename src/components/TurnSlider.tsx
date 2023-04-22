@@ -14,7 +14,7 @@ const TurnSlider = () => {
 
   useEffect(() => {
     setCurrentTurnNumber(1);
-  }, []);
+  }, [setCurrentTurnNumber]);
 
   if (!turnsCount) return <></>;
 

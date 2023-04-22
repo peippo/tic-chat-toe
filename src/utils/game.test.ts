@@ -65,7 +65,7 @@ describe("playerHasWinningLine", () => {
 });
 
 describe("formatDateTime", () => {
-  it("should format Date object to the defined shape", async () => {
+  it("should format Date object to the defined shape", () => {
     expect(
       utils.formatDateTime(
         new Date(

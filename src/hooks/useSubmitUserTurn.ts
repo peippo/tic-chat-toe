@@ -9,8 +9,8 @@ const useSubmitUserTurn = () => {
   const { queryOpponentTurn } = useQueryOpponentTurn();
 
   const { mutate: updateWinner } = api.game.updateWinner.useMutation({
-    onSuccess: () => {
-      utils.invalidate();
+    onSuccess: async () => {
+      await utils.invalidate();
     },
   });
 

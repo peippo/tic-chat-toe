@@ -11,7 +11,7 @@ const Comment: React.FC<{ isViewMode?: boolean }> = ({ isViewMode }) => {
   const [isLoading] = useAtom(isLoadingOpponentTurnAtom);
   const [currentTurnNumber] = useAtom(currentTurnNumberAtom);
   const contentRef = useRef(null);
-  const height = useObserveHeight(contentRef);
+  const height = useObserveHeight(contentRef) ?? 0;
 
   const turns = isViewMode
     ? game?.turns.slice(0, currentTurnNumber) ?? []

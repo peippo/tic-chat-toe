@@ -84,8 +84,8 @@ export const gameRouter = createTRPCRouter({
 
   getGame: publicProcedure
     .input(z.object({ gameId: z.string() }))
-    .query(({ ctx, input }) => {
-      const game = ctx.prisma.game.findFirst({
+    .query(async ({ ctx, input }) => {
+      const game = await ctx.prisma.game.findFirst({
         where: {
           gameId: input.gameId,
         },

@@ -9,8 +9,8 @@ const Home: NextPage = () => {
   const { data: sessionData } = useSession();
   const router = useRouter();
   const { mutate: createGame } = api.game.createGame.useMutation({
-    onSuccess: (data) => {
-      router.push(`/play/${data.gameId}`);
+    onSuccess: async (data) => {
+      await router.push(`/play/${data.gameId}`);
     },
   });
 

@@ -13,8 +13,8 @@ const DeleteGameButton = () => {
   const [currentTurnNumber] = useAtom(currentTurnNumberAtom);
 
   const { mutate: deleteGame } = api.game.deleteGame.useMutation({
-    onSuccess: () => {
-      router.push("/");
+    onSuccess: async () => {
+      await router.push("/");
     },
   });
 

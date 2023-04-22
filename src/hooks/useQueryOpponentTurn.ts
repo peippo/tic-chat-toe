@@ -11,8 +11,8 @@ const useQueryOpponentTurn = () => {
   const [, setIsLoading] = useAtom(isLoadingOpponentTurnAtom);
 
   const { mutate: updateWinner } = api.game.updateWinner.useMutation({
-    onSuccess: () => {
-      utils.invalidate();
+    onSuccess: async () => {
+      await utils.invalidate();
     },
   });
 

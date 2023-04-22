@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, RefObject } from "react";
+import { useState, useLayoutEffect, type RefObject } from "react";
 import useResizeObserver from "@react-hook/resize-observer";
 
 const useObserveHeight = (target: RefObject<HTMLDivElement>) => {

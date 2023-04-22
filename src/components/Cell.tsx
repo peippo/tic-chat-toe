@@ -1,12 +1,12 @@
 import type { Cell } from "~/types";
+import { useAtom } from "jotai";
+import classNames from "classnames";
 import useGame from "~/hooks/useGame";
 import useSubmitUserTurn from "~/hooks/useSubmitUserTurn";
-import { useAtom } from "jotai";
 import { isLoadingOpponentTurnAtom } from "~/hooks/useQueryOpponentTurn";
 import { currentTurnNumberAtom } from "./TurnSlider";
-import classNames from "classnames";
 
-const Cell: React.FC<Cell & { isViewMode: boolean }> = ({
+const CellComponent: React.FC<Cell & { isViewMode: boolean }> = ({
   x,
   y,
   isViewMode,
@@ -14,9 +14,9 @@ const Cell: React.FC<Cell & { isViewMode: boolean }> = ({
   const { game } = useGame();
   const { submitUserTurn } = useSubmitUserTurn();
   const [isLoadingOpponentTurn] = useAtom(isLoadingOpponentTurnAtom);
+  const [currentTurnNumber] = useAtom(currentTurnNumberAtom);
 
   if (isViewMode) {
-    const [currentTurnNumber] = useAtom(currentTurnNumberAtom);
     const turns = game?.turns.slice(0, currentTurnNumber);
 
     const matchingTurn = turns?.find((turn) => turn.x === x && turn.y === y);
@@ -63,4 +63,4 @@ const Cell: React.FC<Cell & { isViewMode: boolean }> = ({
   );
 };
 
-export default Cell;
+export default CellComponent;

@@ -24,14 +24,20 @@ const Archive: NextPage = () => {
     }
   );
 
-  const handleFetchNextPage = async () => {
-    await fetchNextPage();
-    setCurrentPage((prev) => prev + 1);
+  const handleFetchNextPage = () => {
+    fetchNextPage()
+      .then(() => {
+        setCurrentPage((prev) => prev + 1);
+      })
+      .catch((error) => console.log(error));
   };
 
-  const handleFetchPreviousPage = async () => {
-    await fetchPreviousPage();
-    setCurrentPage((prev) => prev - 1);
+  const handleFetchPreviousPage = () => {
+    fetchPreviousPage()
+      .then(() => {
+        setCurrentPage((prev) => prev - 1);
+      })
+      .catch((error) => console.log(error));
   };
 
   const filteredGames = games?.pages[currentPage]?.items;

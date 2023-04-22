@@ -1,6 +1,6 @@
 import Head from "next/head";
 import classNames from "classnames";
-import { NextFont } from "next/dist/compiled/@next/font";
+import type { NextFont } from "next/dist/compiled/@next/font";
 import Controls from "./Controls";
 
 type Props = {

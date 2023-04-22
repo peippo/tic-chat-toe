@@ -91,7 +91,8 @@ export const turnRouter = createTRPCRouter({
 
       const response = await model.call(prompt);
 
-      let opponentTurn: (Cell & { comment?: string }) | undefined = {
+      type OpponentTurn = (Cell & { comment?: string }) | undefined;
+      let opponentTurn: OpponentTurn = {
         x: 0,
         y: 0,
       };
@@ -101,7 +102,7 @@ export const turnRouter = createTRPCRouter({
       if (response) {
         try {
           // Correct reply format
-          opponentTurn = JSON.parse(response);
+          opponentTurn = JSON.parse(response) as OpponentTurn;
         } catch {
           // Wrong format, try to parse the content
           const parsedNumbers = response
