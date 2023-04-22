@@ -63,3 +63,15 @@ describe("playerHasWinningLine", () => {
     expect(utils.playerHasWinningLine(playerTurns)).toBe(false);
   });
 });
+
+describe("formatDateTime", () => {
+  it("should format Date object to the defined shape", async () => {
+    expect(
+      utils.formatDateTime(
+        new Date(
+          "Wed Jun 30 2021 00:30:22 GMT+0300 (Eastern European Summer Time)"
+        )
+      )
+    ).toBe("Jun 30, 00:30");
+  });
+});

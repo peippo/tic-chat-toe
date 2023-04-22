@@ -73,6 +73,58 @@ export const gameRouter = createTRPCRouter({
       return game;
     }),
 
+  getGames: publicProcedure
+    .input(
+      z.object({
+        cursor: z.string().nullish(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const limit = 15;
+      const { cursor } = input;
+      const lastFiveMinutes = new Date(
+        Date.now() - 5 * 60 * 1000
+      ).toISOString();
+
+      const items = await ctx.prisma.game.findMany({
+        take: limit + 1,
+        select: {
+          gameId: true,
+          createdAt: true,
+          wonByUser: true,
+          user: {
+            select: {
+              name: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        where: {
+          OR: [
+            {
+              createdAt: { gte: lastFiveMinutes },
+            },
+            { OR: [{ wonByUser: true }, { wonByUser: false }] },
+          ],
+        },
+        cursor: cursor ? { gameId: cursor } : undefined,
+      });
+
+      let nextCursor: typeof cursor | undefined = undefined;
+
+      if (items.length > limit) {
+        const nextItem = items.pop();
+        nextCursor = nextItem?.gameId;
+      }
+
+      return {
+        items,
+        nextCursor,
+      };
+    }),
+
   updateWinner: protectedProcedure
     .input(z.object({ gameId: z.string(), wonByUser: z.boolean() }))
     .mutation(async ({ ctx, input }) => {
