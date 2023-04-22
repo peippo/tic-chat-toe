@@ -1,21 +1,16 @@
-import { Prisma } from "@prisma/client";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { formatDateTime } from "~/utils/game";
+import type { Game } from "@prisma/client";
 
-const GameDetails = Prisma.validator<Prisma.GameArgs>()({
-  select: {
-    gameId: true,
-    createdAt: true,
-    wonByUser: true,
-  },
-});
-
-type GameWithUser = Prisma.GameGetPayload<typeof GameDetails> & {
+type GameWithUser = Game & {
   user: { name: string | null };
 };
 
 const GameListRow: React.FC<{ game: GameWithUser }> = ({ game }) => {
+  const { data: sessionData } = useSession();
+
   return (
     <tr className="relative tracking-tighter hover:cursor-pointer hover:bg-gray-500/40">
       <td className="px-2 text-left">
@@ -23,7 +18,11 @@ const GameListRow: React.FC<{ game: GameWithUser }> = ({ game }) => {
       </td>
       <td className="px-2 text-left">
         <Link
-          href={`/view/${game.gameId}`}
+          href={
+            game.wonByUser === null && sessionData?.user.id === game.createdById
+              ? `/play/${game.gameId}`
+              : `/view/${game.gameId}`
+          }
           className="after:absolute after:inset-0 after:h-full after:w-full after:content-['']"
         >
           {formatDateTime(game.createdAt)}

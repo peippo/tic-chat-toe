@@ -27,7 +27,7 @@ const Home: NextPage = () => {
           </p>
 
           <button
-            className="z-10 -mb-3 w-48 rounded-lg bg-gray-800 py-3 text-sm font-semibold text-gray-400 drop-shadow-button transition hover:bg-gray-900 disabled:cursor-not-allowed disabled:text-gray-500/50 disabled:hover:bg-gray-800"
+            className="z-10 -mb-3 w-48 rounded-lg bg-gray-800 py-3 text-sm text-gray-400 drop-shadow-button transition hover:bg-gray-900 disabled:cursor-not-allowed disabled:text-gray-500/50 disabled:hover:bg-gray-800"
             onClick={() => createGame()}
             disabled={!sessionData}
           >
@@ -45,13 +45,13 @@ const Home: NextPage = () => {
         </div>
 
         <Link
-          className="w-40 rounded-lg bg-gray-400 py-3 text-center text-xs font-semibold text-gray-800 no-underline drop-shadow-button transition hover:bg-gray-400/80"
+          className="w-40 rounded-lg bg-gray-400 py-3 text-center text-xs text-gray-800 no-underline drop-shadow-button transition hover:bg-gray-400/80"
           href="/archive"
         >
           Games archive
         </Link>
         <Link
-          className="w-40 rounded-lg bg-gray-400 py-3 text-center text-xs font-semibold text-gray-800 no-underline drop-shadow-button transition hover:bg-gray-400/80"
+          className="w-40 rounded-lg bg-gray-400 py-3 text-center text-xs text-gray-800 no-underline drop-shadow-button transition hover:bg-gray-400/80"
           href="/scores"
         >
           High scores
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
             {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
           </p>
           <button
-            className="w-40 rounded-lg bg-gray-400 py-3 text-center text-xs font-semibold text-gray-800 drop-shadow-button transition hover:bg-gray-400/80"
+            className="w-40 rounded-lg bg-gray-400 py-3 text-center text-xs text-gray-800 drop-shadow-button transition hover:bg-gray-400/80"
             onClick={sessionData ? () => void signOut() : () => void signIn()}
           >
             {sessionData ? "Sign out" : "Sign in"}

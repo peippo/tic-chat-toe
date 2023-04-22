@@ -52,6 +52,36 @@ export const gameRouter = createTRPCRouter({
     return newGame;
   }),
 
+  deleteGame: protectedProcedure
+    .input(z.object({ gameId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+
+      const game = await ctx.prisma.game.delete({
+        where: {
+          gameId: input.gameId,
+        },
+      });
+
+      if (!game) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+        });
+      }
+
+      if (!user || user.id !== game.createdById) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+        });
+      }
+
+      return game;
+    }),
+
   getGame: publicProcedure
     .input(z.object({ gameId: z.string() }))
     .query(({ ctx, input }) => {
@@ -91,6 +121,7 @@ export const gameRouter = createTRPCRouter({
         select: {
           gameId: true,
           createdAt: true,
+          createdById: true,
           wonByUser: true,
           user: {
             select: {

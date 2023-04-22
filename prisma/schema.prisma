@@ -26,7 +26,7 @@ model Turn {
     y         Int
     isByUser  Boolean
     gameId    String
-    game      Game     @relation(fields: [gameId], references: [gameId])
+    game      Game     @relation(fields: [gameId], references: [gameId], onDelete: Cascade)
     comment   String?
 }
 

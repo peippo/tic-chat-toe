@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import GameArea from "~/components/GameArea";
 import Comment from "~/components/Comment";
 import TurnSlider from "~/components/TurnSlider";
+import DeleteGameButton from "~/components/DeleteGameButton";
 
 const Game: NextPage = () => {
   return (
@@ -15,6 +16,7 @@ const Game: NextPage = () => {
         <TurnSlider />
         <Comment isViewMode={true} />
       </div>
+      <DeleteGameButton />
     </>
   );
 };
