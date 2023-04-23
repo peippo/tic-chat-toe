@@ -46,6 +46,7 @@ const useQueryOpponentTurn = () => {
         setIsLoading(false);
       }
     },
+    retry: 3,
   });
 
   return { queryOpponentTurn };

@@ -136,6 +136,11 @@ export const turnRouter = createTRPCRouter({
         }
       }
 
+      // Occasionally tries to make a move on a reserved cell
+      const isReservedCell = previousTurns?.find(
+        (turn) => turn.x === opponentTurn?.x && turn.y === opponentTurn?.y
+      );
+
       /* prettier-ignore */
       if (env.NODE_ENV === "development") {
         console.log("------------------------");
@@ -143,10 +148,13 @@ export const turnRouter = createTRPCRouter({
         console.log("PROMPT:  ", prompt);
         console.log("REPLY:   ", response);
         console.log("MOVE:    ", `${JSON.stringify(opponentTurn)} (${responseType})`);
+        if (isReservedCell) {
+          console.log("ERROR:   ", `Reserved cell!`);
+        }
         console.log("------------------------");
       }
 
-      if (!opponentTurn) {
+      if (isReservedCell || !opponentTurn) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
         });
