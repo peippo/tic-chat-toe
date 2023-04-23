@@ -38,9 +38,11 @@ const Home: NextPage = () => {
           <Image
             src="/xo-divider.png"
             alt=""
-            width="800"
-            height="400"
+            width="224"
+            height="112"
             className="absolute -bottom-[56px]"
+            priority={true}
+            draggable={false}
           />
         </div>
 
