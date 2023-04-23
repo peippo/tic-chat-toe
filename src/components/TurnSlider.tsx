@@ -35,7 +35,7 @@ const TurnSlider = () => {
           step="1"
           value={currentTurnNumber}
           onChange={(event) => setCurrentTurnNumber(Number(event.target.value))}
-          className="relative z-10 h-1 cursor-pointer appearance-none bg-gray-600 accent-gray-800 hover:accent-gray-800"
+          className="relative z-10 h-1 max-w-[10rem] cursor-pointer appearance-none bg-gray-600 accent-gray-800 hover:accent-gray-800"
         />
 
         <div className="absolute inset-0 flex items-center justify-between px-5">
