@@ -33,12 +33,12 @@ const useSubmitUserTurn = () => {
         const userTurns = gameData?.turns.filter((turn) => turn.isByUser);
 
         if (userTurns && playerHasWinningLine(userTurns)) {
-          updateGameState({ gameId: game?.gameId, gameState: "WON" });
+          updateGameState({ gameId: game.gameId, gameState: "WON" });
         } else if (gameData?.turns.length === 9) {
-          updateGameState({ gameId: game?.gameId, gameState: "TIE" });
+          updateGameState({ gameId: game.gameId, gameState: "TIE" });
         } else {
           queryOpponentTurn({
-            gameId: game?.gameId,
+            gameId: game.gameId,
           });
         }
       }

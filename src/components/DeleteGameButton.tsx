@@ -21,7 +21,7 @@ const DeleteGameButton = () => {
   return (
     <div
       className={classNames(
-        "absolute bottom-4 left-1/2 w-full -translate-x-1/2 px-2 transition-opacity duration-700",
+        "absolute bottom-0 left-1/2 flex h-24 w-full -translate-x-1/2 bg-gradient-to-t from-gray-600 to-gray-600/60 px-2 transition-opacity duration-700",
         currentTurnNumber === 1 ? "opacity-100" : "opacity-0"
       )}
     >
@@ -29,7 +29,7 @@ const DeleteGameButton = () => {
         game.createdById === sessionData?.user.id &&
         currentTurnNumber === 1 && (
           <button
-            className="mx-auto flex w-48 items-center justify-center rounded-lg bg-gray-400 p-1 py-3 text-gray-800 drop-shadow-button transition hover:bg-gray-400/80"
+            className="mx-auto mb-4 flex w-48 items-center justify-center self-end rounded-lg bg-gray-400 p-1 py-3 text-gray-800 drop-shadow-button transition hover:bg-gray-400/80"
             onClick={() => deleteGame({ gameId: game?.gameId })}
           >
             <svg
