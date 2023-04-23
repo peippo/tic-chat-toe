@@ -33,7 +33,7 @@ const CellComponent: React.FC<Cell & { isViewMode: boolean }> = ({
     );
   }
 
-  const isGameFinished = Boolean(game && game?.wonByUser !== null);
+  const isGameFinished = Boolean(game && game?.gameState !== "IN_PROGRESS");
   const matchingTurn = game?.turns.find((turn) => turn.x === x && turn.y === y);
 
   if (matchingTurn) {

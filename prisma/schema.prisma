@@ -11,12 +11,12 @@ datasource db {
 }
 
 model Game {
-    gameId      String   @id @default(cuid())
-    createdAt   DateTime @default(now())
+    gameId      String    @id @default(cuid())
+    createdAt   DateTime  @default(now())
     createdById String
     turns       Turn[]
-    user        User     @relation(fields: [createdById], references: [id])
-    wonByUser   Boolean?
+    user        User      @relation(fields: [createdById], references: [id])
+    gameState   GameState @default(IN_PROGRESS)
 }
 
 model Turn {
@@ -28,6 +28,13 @@ model Turn {
     gameId    String
     game      Game     @relation(fields: [gameId], references: [gameId], onDelete: Cascade)
     comment   String?
+}
+
+enum GameState {
+    WON
+    LOST
+    TIE
+    IN_PROGRESS
 }
 
 // Necessary for Next auth

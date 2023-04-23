@@ -8,7 +8,7 @@ const useSubmitUserTurn = () => {
   const { game } = useGame();
   const { queryOpponentTurn } = useQueryOpponentTurn();
 
-  const { mutate: updateWinner } = api.game.updateWinner.useMutation({
+  const { mutate: updateGameState } = api.game.updateGameState.useMutation({
     onSuccess: async () => {
       await utils.invalidate();
     },
@@ -33,7 +33,9 @@ const useSubmitUserTurn = () => {
         const userTurns = gameData?.turns.filter((turn) => turn.isByUser);
 
         if (userTurns && playerHasWinningLine(userTurns)) {
-          updateWinner({ gameId: game?.gameId, wonByUser: true });
+          updateGameState({ gameId: game?.gameId, gameState: "WON" });
+        } else if (gameData?.turns.length === 9) {
+          updateGameState({ gameId: game?.gameId, gameState: "TIE" });
         } else {
           queryOpponentTurn({
             gameId: game?.gameId,

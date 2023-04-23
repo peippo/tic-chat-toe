@@ -59,7 +59,14 @@ const Home: NextPage = () => {
 
         <div className="mt-auto flex flex-col items-center justify-center gap-2">
           <p className="text-center text-sm text-gray-800">
-            {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
+            {sessionData && (
+              <span>
+                Logged in
+                {sessionData.user.name && (
+                  <span> as {sessionData.user.name.substring(0, 7)}</span>
+                )}
+              </span>
+            )}
           </p>
           <button
             className="w-40 rounded-lg bg-gray-400 py-3 text-center text-xs text-gray-800 drop-shadow-button transition hover:bg-gray-400/80"

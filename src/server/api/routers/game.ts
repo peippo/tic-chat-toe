@@ -5,6 +5,7 @@ import {
   protectedProcedure,
 } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
+import { GameState } from "@prisma/client";
 
 export const gameRouter = createTRPCRouter({
   createGame: protectedProcedure.mutation(async ({ ctx }) => {
@@ -122,7 +123,7 @@ export const gameRouter = createTRPCRouter({
           gameId: true,
           createdAt: true,
           createdById: true,
-          wonByUser: true,
+          gameState: true,
           user: {
             select: {
               name: true,
@@ -137,7 +138,13 @@ export const gameRouter = createTRPCRouter({
             {
               createdAt: { gte: lastFiveMinutes },
             },
-            { OR: [{ wonByUser: true }, { wonByUser: false }] },
+            {
+              OR: [
+                { gameState: "WON" },
+                { gameState: "LOST" },
+                { gameState: "TIE" },
+              ],
+            },
           ],
         },
         cursor: cursor ? { gameId: cursor } : undefined,
@@ -156,8 +163,8 @@ export const gameRouter = createTRPCRouter({
       };
     }),
 
-  updateWinner: protectedProcedure
-    .input(z.object({ gameId: z.string(), wonByUser: z.boolean() }))
+  updateGameState: protectedProcedure
+    .input(z.object({ gameId: z.string(), gameState: z.nativeEnum(GameState) }))
     .mutation(async ({ ctx, input }) => {
       const user = await ctx.prisma.user.findUnique({
         where: {
@@ -176,7 +183,7 @@ export const gameRouter = createTRPCRouter({
           gameId: input.gameId,
         },
         data: {
-          wonByUser: input.wonByUser,
+          gameState: input.gameState,
         },
       });
 

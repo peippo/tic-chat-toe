@@ -19,7 +19,8 @@ const GameListRow: React.FC<{ game: GameWithUser }> = ({ game }) => {
       <td className="px-2 text-left">
         <Link
           href={
-            game.wonByUser === null && sessionData?.user.id === game.createdById
+            game.gameState === "IN_PROGRESS" &&
+            sessionData?.user.id === game.createdById
               ? `/play/${game.gameId}`
               : `/view/${game.gameId}`
           }
@@ -29,9 +30,10 @@ const GameListRow: React.FC<{ game: GameWithUser }> = ({ game }) => {
         </Link>
       </td>
       <td className="text-center">
-        {game.wonByUser === true && <span className="p-1">won</span>}
-        {game.wonByUser === false && <span className="p-1">lost</span>}
-        {game.wonByUser === null && (
+        {game.gameState === "WON" && <span className="p-1">won</span>}
+        {game.gameState === "LOST" && <span className="p-1">lost</span>}
+        {game.gameState === "TIE" && <span className="p-1">tie</span>}
+        {game.gameState === "IN_PROGRESS" && (
           <span className="animate-pulse rounded-md bg-gray-600 p-1 text-gray-400">
             live
           </span>
