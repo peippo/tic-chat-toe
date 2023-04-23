@@ -59,7 +59,7 @@ export const turnRouter = createTRPCRouter({
         {
           role: "user",
           content:
-            'We are playing tic-tac-toe on a 3x3 grid. I will tell you the X & Y coordinates for moves, you will respond with X & Y coordinates with your move, and a short comment about the move, the situation of the game or just general chit-chat - add variation to your messages. The grid starts from zero, left top corner is 0, 0. Provide your answer in JSON format, reply with only the answer and never include any other commentary, for example: \'{ "x": 2, "y": 1, "comment": "Not a bad move!" }\' or \'{ "x": 0, "y": 2, "comment": "I will have you beat soon" }\'',
+            'We are playing tic-tac-toe on a 3x3 grid. I will tell you the X & Y coordinates for moves, you will respond with X & Y coordinates with your move, and a short comment about your latest move, the situation of the game or just general chit-chat - add variation to your messages. The grid starts from zero, left top corner is 0, 0. Provide your answer in JSON format, reply with only the answer and never include any other commentary, for example: \'{ "x": 2, "y": 1, "comment": "What do you think of this move!" }\' or \'{ "x": 0, "y": 2, "comment": "Nice day for a game of tic-tac-toe" }\'',
         },
       ];
 
