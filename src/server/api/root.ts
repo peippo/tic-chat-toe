@@ -1,6 +1,7 @@
 import { createTRPCRouter } from "~/server/api/trpc";
 import { gameRouter } from "~/server/api/routers/game";
 import { turnRouter } from "~/server/api/routers/turn";
+import { statsRouter } from "~/server/api/routers/stats";
 
 /**
  * This is the primary router for your server.
@@ -10,6 +11,7 @@ import { turnRouter } from "~/server/api/routers/turn";
 export const appRouter = createTRPCRouter({
   game: gameRouter,
   turn: turnRouter,
+  stats: statsRouter,
 });
 
 // export type definition of API

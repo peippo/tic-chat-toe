@@ -54,9 +54,9 @@ const Home: NextPage = () => {
         </Link>
         <Link
           className="w-40 rounded-lg bg-gray-400 py-3 text-center text-xs text-gray-800 no-underline drop-shadow-button transition hover:bg-gray-400/80"
-          href="/scores"
+          href="/stats"
         >
-          High scores
+          Statistics
         </Link>
 
         <div className="mt-auto flex flex-col items-center justify-center gap-2">

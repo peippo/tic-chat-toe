@@ -51,9 +51,9 @@ const Archive: NextPage = () => {
       <table className="w-full">
         <thead>
           <tr className="bg-gray-600 text-left text-xs text-gray-300">
-            <th className="p-2">User</th>
-            <th className="p-2">Date</th>
-            <th className="p-2">State</th>
+            <th className="p-2 font-normal">User</th>
+            <th className="p-2 font-normal">Date</th>
+            <th className="p-2 font-normal">State</th>
           </tr>
         </thead>
         <tbody className="text-xs">
