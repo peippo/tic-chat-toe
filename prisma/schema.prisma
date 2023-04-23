@@ -75,7 +75,6 @@ model User {
     sessions      Session[]
     games         Game[]
     activeGameId  String?
-    wins          Int       @default(0)
 }
 
 model VerificationToken {
