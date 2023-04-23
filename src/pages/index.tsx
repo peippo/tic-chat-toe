@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
@@ -6,13 +7,17 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Home: NextPage = () => {
-  const { data: sessionData } = useSession();
+  const { data: sessionData, update: updateSessionData } = useSession();
   const router = useRouter();
   const { mutate: createGame } = api.game.createGame.useMutation({
     onSuccess: async (data) => {
       await router.push(`/play/${data.gameId}`);
     },
   });
+
+  useEffect(() => {
+    updateSessionData();
+  }, [updateSessionData]);
 
   return (
     <>
