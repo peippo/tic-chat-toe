@@ -18,11 +18,11 @@ const Layout: React.FC<Props> = ({ children, font }) => {
       </Head>
       <main
         className={classNames(
-          "flex h-screen min-h-screen select-none flex-col items-center justify-center bg-slate-800",
+          "flex h-screen min-h-screen select-none flex-col items-center justify-center bg-gradient-to-tl from-slate-800 to-slate-600",
           font.className
         )}
       >
-        <div className="relative overflow-hidden rounded-3xl border-x-2 border-b-[12px] border-t-2 border-x-purple-500 border-b-purple-800 border-t-purple-600 bg-purple-700 bg-gradient-to-t from-purple-400 via-purple-600 via-15% to-purple-800 px-8 pt-4 shadow-2xl shadow-purple-950">
+        <div className="relative z-10 overflow-hidden rounded-3xl border-x-2 border-b-[12px] border-t-2 border-x-purple-500 border-b-purple-800 border-t-purple-600 bg-purple-700 bg-gradient-to-t from-purple-400 via-purple-600 via-15% to-purple-800 px-8 pt-4 shadow-2xl shadow-purple-950">
           <div className="pointer-events-none absolute -top-80 right-40 z-30 h-[512px] w-40 rotate-45 bg-gradient-to-t from-cyan-400 via-cyan-500 via-10% to-slate-600 to-70% opacity-30 mix-blend-lighten"></div>
           <div className="pointer-events-none absolute -top-72 right-40 z-30 h-[512px] w-60 rotate-45 bg-gradient-to-t from-cyan-400 via-cyan-500 via-30% to-slate-600 to-80% opacity-20 mix-blend-lighten"></div>
           <div className="absolute bottom-0 right-0 h-[1px] w-64 bg-gradient-to-r from-purple-400 via-white to-purple-400"></div>
@@ -42,6 +42,22 @@ const Layout: React.FC<Props> = ({ children, font }) => {
             </p>
           </div>
           <Controls />
+        </div>
+
+        {/* background elements */}
+        <div className="absolute inset-0 h-full w-full overflow-hidden">
+          <span
+            aria-hidden="true"
+            className="absolute -top-[10vw] left-0 text-[60vw] leading-none text-slate-700/70"
+          >
+            X
+          </span>
+          <span
+            aria-hidden="true"
+            className="absolute bottom-0 right-0 text-[60vw] leading-none text-slate-700/70"
+          >
+            O
+          </span>
         </div>
       </main>
     </>
