@@ -1,5 +1,6 @@
 import type { Cell } from "~/types";
 import { useAtom } from "jotai";
+import { useRouter } from "next/router";
 import classNames from "classnames";
 import useGame from "~/hooks/useGame";
 import useSubmitUserTurn from "~/hooks/useSubmitUserTurn";
@@ -11,13 +12,17 @@ const CellComponent: React.FC<Cell & { isViewMode: boolean }> = ({
   y,
   isViewMode,
 }) => {
+  const router = useRouter();
+  const { isLive } = router.query;
   const { game } = useGame();
   const { submitUserTurn } = useSubmitUserTurn();
   const [isLoadingOpponentTurn] = useAtom(isLoadingOpponentTurnAtom);
   const [currentTurnNumber] = useAtom(currentTurnNumberAtom);
 
   if (isViewMode) {
-    const turns = game?.turns.slice(0, currentTurnNumber);
+    const turns = isLive
+      ? game?.turns
+      : game?.turns.slice(0, currentTurnNumber);
 
     const matchingTurn = turns?.find((turn) => turn.x === x && turn.y === y);
 

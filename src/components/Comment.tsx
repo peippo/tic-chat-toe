@@ -5,17 +5,21 @@ import useGame from "~/hooks/useGame";
 import { isLoadingOpponentTurnAtom } from "~/hooks/useQueryOpponentTurn";
 import useObserveHeight from "~/hooks/useObserveHeight";
 import { currentTurnNumberAtom } from "./TurnSlider";
+import { useRouter } from "next/router";
 
 const Comment: React.FC<{ isViewMode?: boolean }> = ({ isViewMode }) => {
+  const router = useRouter();
+  const { isLive } = router.query;
   const { game } = useGame();
   const [isLoading] = useAtom(isLoadingOpponentTurnAtom);
   const [currentTurnNumber] = useAtom(currentTurnNumberAtom);
   const contentRef = useRef(null);
   const height = useObserveHeight(contentRef) ?? 0;
 
-  const turns = isViewMode
-    ? game?.turns.slice(0, currentTurnNumber) ?? []
-    : game?.turns ?? [];
+  const turns =
+    isViewMode && !isLive
+      ? game?.turns.slice(0, currentTurnNumber) ?? []
+      : game?.turns ?? [];
   const opponentTurns = turns?.filter((turn) => !turn.isByUser);
   const latestOpponentTurn = opponentTurns?.pop();
 

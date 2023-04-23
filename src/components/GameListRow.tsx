@@ -13,11 +13,18 @@ const GameListRow: React.FC<{ game: GameWithUser }> = ({ game }) => {
   const router = useRouter();
   const { data: sessionData } = useSession();
 
-  const rowLink =
+  let rowLink = `/view/${game.gameId}`;
+
+  if (game.gameState === "IN_PROGRESS") {
+    rowLink = `/view/${game.gameId}?isLive=1`;
+  }
+
+  if (
     game.gameState === "IN_PROGRESS" &&
     sessionData?.user.id === game.createdById
-      ? `/play/${game.gameId}`
-      : `/view/${game.gameId}`;
+  ) {
+    rowLink = `/play/${game.gameId}`;
+  }
 
   return (
     <tr className="tracking-tighter hover:cursor-pointer hover:bg-gray-500/40">
