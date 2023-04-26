@@ -1,6 +1,6 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { UserStats } from "~/types";
+import type { UserStats } from "~/types";
 
 export const statsRouter = createTRPCRouter({
   getUserStats: publicProcedure.query(async ({ ctx }) => {
