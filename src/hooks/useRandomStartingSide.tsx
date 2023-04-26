@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAtom } from "jotai";
 import useQueryOpponentTurn from "~/hooks/useQueryOpponentTurn";
 import useGame from "~/hooks/useGame";
@@ -9,18 +10,38 @@ const useRandomStartingSide = () => {
   const [isLoadingOpponentTurn] = useAtom(isLoadingOpponentTurnAtom);
   const { queryOpponentTurn } = useQueryOpponentTurn();
 
-  const opponentStarts: boolean = Math.random() < 0.5;
+  const [opponentStarts, setOpponentStarts] = useState<boolean | null>(null);
   const isFirstTurn = game?.turns.length === 0;
 
   useEffect(() => {
-    if (isFirstTurn && opponentStarts && !isLoadingOpponentTurn) {
+    if (isFirstTurn && opponentStarts === null) {
+      setOpponentStarts(Math.random() < 0.5);
+    }
+  }, [isFirstTurn, opponentStarts]);
+
+  useEffect(() => {
+    if (
+      isFirstTurn &&
+      opponentStarts &&
+      !isLoadingOpponentTurn &&
+      game &&
+      game.gameId
+    ) {
       queryOpponentTurn({
         gameId: game.gameId,
       });
     }
-  }, [game, isLoadingOpponentTurn, queryOpponentTurn]);
+  }, [
+    game,
+    isLoadingOpponentTurn,
+    queryOpponentTurn,
+    opponentStarts,
+    isFirstTurn,
+  ]);
 
-  return { opponentStarts, isFirstTurn };
+  const isRandomizing = opponentStarts === null;
+
+  return { opponentStarts, isFirstTurn, isRandomizing };
 };
 
 export default useRandomStartingSide;
