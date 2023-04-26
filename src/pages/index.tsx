@@ -1,13 +1,13 @@
-import { useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
+import useUpdatedSessionData from "~/hooks/useUpdatedSessionData";
 import { type NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
 const Home: NextPage = () => {
-  const { data: sessionData, status, update: updateSessionData } = useSession();
+  const { data: sessionData } = useSession();
   const router = useRouter();
   const { mutate: createGame } = api.game.createGame.useMutation({
     onSuccess: async (data) => {
@@ -16,19 +16,7 @@ const Home: NextPage = () => {
   });
 
   // Update session data to get the current activeGameId state
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      if (url === "/" && status === "authenticated") {
-        updateSessionData();
-      }
-    };
-
-    router.events.on("routeChangeComplete", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [status, updateSessionData, router]);
+  useUpdatedSessionData();
 
   return (
     <>
