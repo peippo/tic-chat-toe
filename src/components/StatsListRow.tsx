@@ -10,7 +10,7 @@ const StatsListRow: React.FC<{ user: UserStats }> = ({ user }) => {
       <td className="px-2 text-center">{user.wins}</td>
       <td className="text-center">{user.losses}</td>
       <td className="text-center">
-        {user.losses === 0 ? user.wins : user.wins / user.losses}
+        {user.losses === 0 ? user.wins : (user.wins / user.losses).toFixed(1)}
       </td>
     </tr>
   );

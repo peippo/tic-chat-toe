@@ -6,15 +6,13 @@ const StartingSideMessage = () => {
   if (!isFirstTurn) return <></>;
 
   return (
-    <>
-      <p className="absolute top-14 text-center text-sm text-gray-400">
-        {opponentStarts ? (
-          <span>Opponent starts...</span>
-        ) : (
-          <span>You start...</span>
-        )}
-      </p>
-    </>
+    <p className="absolute top-14 text-center text-sm text-gray-400">
+      {opponentStarts ? (
+        <span>Opponent starts...</span>
+      ) : (
+        <span>You start...</span>
+      )}
+    </p>
   );
 };
 

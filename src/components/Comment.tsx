@@ -41,7 +41,7 @@ const Comment: React.FC<{ isViewMode?: boolean }> = ({ isViewMode }) => {
           {isLoading ? (
             <p className="animate-bounce p-3 text-2xl leading-none">...</p>
           ) : (
-            <p className="p-3 text-center text-xs">
+            <p className="p-3 text-center text-xs leading-tight tracking-tight">
               {latestOpponentTurn?.comment}
             </p>
           )}
