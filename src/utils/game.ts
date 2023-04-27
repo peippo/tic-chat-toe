@@ -44,7 +44,7 @@ const winLines = [
 ]
 
 export const playerHasWinningLine = (playerTurns: Pick<Turn, "x" | "y">[]) => {
-  let foundWinningLine = false;
+  let winningLine: Array<{ x: number; y: number }> | false = false;
 
   for (const line of winLines) {
     if (
@@ -54,12 +54,12 @@ export const playerHasWinningLine = (playerTurns: Pick<Turn, "x" | "y">[]) => {
         )
       )
     ) {
-      foundWinningLine = true;
+      winningLine = line;
       break;
     }
   }
 
-  return foundWinningLine;
+  return winningLine;
 };
 
 export const formatDateTime = (date: Date) =>

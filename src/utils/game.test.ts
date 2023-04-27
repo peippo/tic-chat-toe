@@ -45,13 +45,20 @@ describe("findRandomFreeCell", () => {
 });
 
 describe("playerHasWinningLine", () => {
-  it("should return true if the player has a winning line", () => {
+  it("should return the winning line array if the player has a winning line", () => {
     const playerTurns = [
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
     ];
-    expect(utils.playerHasWinningLine(playerTurns)).toBe(true);
+    const expectedWinningLine = [
+      { x: 0, y: 0 },
+      { x: 1, y: 1 },
+      { x: 2, y: 2 },
+    ];
+    expect(utils.playerHasWinningLine(playerTurns)).toEqual(
+      expectedWinningLine
+    );
   });
 
   it("should return false if the player does not have a winning line", () => {

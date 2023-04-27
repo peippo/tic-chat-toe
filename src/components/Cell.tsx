@@ -6,6 +6,7 @@ import useGame from "~/hooks/useGame";
 import useSubmitUserTurn from "~/hooks/useSubmitUserTurn";
 import { isLoadingOpponentTurnAtom } from "~/hooks/useQueryOpponentTurn";
 import { currentTurnNumberAtom } from "./TurnSlider";
+import { playerHasWinningLine } from "~/utils/game";
 
 const CellComponent: React.FC<Cell & { isViewMode: boolean }> = ({
   x,
@@ -19,18 +20,32 @@ const CellComponent: React.FC<Cell & { isViewMode: boolean }> = ({
   const [isLoadingOpponentTurn] = useAtom(isLoadingOpponentTurnAtom);
   const [currentTurnNumber] = useAtom(currentTurnNumberAtom);
 
+  const userWinLine = playerHasWinningLine(
+    game?.turns.filter((turn) => turn.isByUser) ?? []
+  );
+  const opponentWinLine = playerHasWinningLine(
+    game?.turns.filter((turn) => !turn.isByUser) ?? []
+  );
+  const inWinLine =
+    (userWinLine &&
+      userWinLine?.some((cell) => cell.x === x && cell.y === y)) ||
+    (opponentWinLine &&
+      opponentWinLine?.some((cell) => cell.x === x && cell.y === y));
+
   if (isViewMode) {
     const turns = isLive
       ? game?.turns
       : game?.turns.slice(0, currentTurnNumber);
 
     const matchingTurn = turns?.find((turn) => turn.x === x && turn.y === y);
+    const isLastTurn = game?.turns?.length === currentTurnNumber;
 
     return (
       <div
         className={classNames(
-          "pointer-events-none flex h-full items-center justify-center",
-          matchingTurn ? "shadow-cell-active" : "shadow-cell"
+          "pointer-events-none flex h-full items-center justify-center transition-colors duration-500",
+          matchingTurn ? "bg-gray-400 shadow-cell-active" : "shadow-cell",
+          inWinLine && isLastTurn && "text-gray-300"
         )}
       >
         {matchingTurn ? (matchingTurn.isByUser ? "X" : "O") : null}
@@ -43,7 +58,12 @@ const CellComponent: React.FC<Cell & { isViewMode: boolean }> = ({
 
   if (matchingTurn) {
     return (
-      <div className="pointer-events-none flex h-full items-center justify-center shadow-cell-active">
+      <div
+        className={classNames(
+          "pointer-events-none flex h-full items-center justify-center bg-gray-400 shadow-cell-active transition-colors duration-500",
+          inWinLine && "text-gray-300"
+        )}
+      >
         {matchingTurn.isByUser ? "X" : "O"}
       </div>
     );
