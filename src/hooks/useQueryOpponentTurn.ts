@@ -4,11 +4,13 @@ import { playerHasWinningLine } from "~/utils/game";
 import { atom, useAtom } from "jotai";
 
 export const isLoadingOpponentTurnAtom = atom(false);
+export const isOpponentErrorAtom = atom(false);
 
 const useQueryOpponentTurn = () => {
   const utils = api.useContext();
   const { game } = useGame();
   const [, setIsLoading] = useAtom(isLoadingOpponentTurnAtom);
+  const [, setIsError] = useAtom(isOpponentErrorAtom);
 
   const { mutate: updateGameState } = api.game.updateGameState.useMutation({
     onSuccess: async () => {
@@ -45,6 +47,9 @@ const useQueryOpponentTurn = () => {
 
         setIsLoading(false);
       }
+    },
+    onError: () => {
+      setIsError(true);
     },
     retry: 3,
   });

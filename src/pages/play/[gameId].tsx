@@ -1,11 +1,16 @@
 import Head from "next/head";
 import type { NextPage } from "next";
+import { useAtom } from "jotai";
+import { isOpponentErrorAtom } from "~/hooks/useQueryOpponentTurn";
 import GameArea from "~/components/GameArea";
 import Comment from "~/components/Comment";
 import GameEndStatus from "~/components/GameEndStatus";
 import StartingSideMessage from "~/components/StartingSideMessage";
+import ErrorMessage from "~/components/ErrorMessage";
 
 const Game: NextPage = () => {
+  const [isOpponentError] = useAtom(isOpponentErrorAtom);
+
   return (
     <>
       <Head>
@@ -17,6 +22,8 @@ const Game: NextPage = () => {
         <GameEndStatus />
         <Comment />
       </div>
+
+      {isOpponentError && <ErrorMessage />}
     </>
   );
 };
