@@ -2,10 +2,11 @@ import Head from "next/head";
 import type { NextPage } from "next";
 import { api } from "~/utils/api";
 import StatsListRow from "~/components/StatsListRow";
+import LoadingSpinner from "~/components/LoadingSpinner";
 
 const Stats: NextPage = () => {
   const { data: userStats } = api.stats.getUserStats.useQuery();
-  const { data: topUsersStats } = api.stats.getTopUsersStats.useQuery();
+  const { data: topUsersStats, status } = api.stats.getTopUsersStats.useQuery();
 
   return (
     <>
@@ -59,35 +60,41 @@ const Stats: NextPage = () => {
         </section>
       )}
 
-      {topUsersStats && (
-        <section>
-          <h2 className="bg-gray-800 pb-3 pt-4 text-center text-xs text-gray-300">
-            Top players
-          </h2>
+      <section>
+        <h2 className="bg-gray-800 pb-3 pt-4 text-center text-xs text-gray-300">
+          Top players
+        </h2>
 
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gray-600 text-left text-xs text-gray-300">
-                <th className="p-2 font-normal">User</th>
-                <th className="w-1/5 p-2 text-center font-normal">
-                  W<span className="sr-only">ins</span>
-                </th>
-                <th className="w-1/5 p-2 text-center font-normal">
-                  L<span className="sr-only">osses</span>
-                </th>
-                <th className="w-1/5 p-2 text-center font-normal">
-                  W/L <span className="sr-only">ratio</span>
-                </th>
+        <table className="w-full">
+          <thead>
+            <tr className="bg-gray-600 text-left text-xs text-gray-300">
+              <th className="p-2 font-normal">User</th>
+              <th className="w-1/5 p-2 text-center font-normal">
+                W<span className="sr-only">ins</span>
+              </th>
+              <th className="w-1/5 p-2 text-center font-normal">
+                L<span className="sr-only">osses</span>
+              </th>
+              <th className="w-1/5 p-2 text-center font-normal">
+                W/L <span className="sr-only">ratio</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-xs">
+            {status === "loading" && (
+              <tr className="w-full">
+                <td colSpan={4} className="pt-12">
+                  <LoadingSpinner message="Loading stats" />
+                </td>
               </tr>
-            </thead>
-            <tbody className="text-xs">
-              {topUsersStats?.map((user) => (
+            )}
+            {status === "success" &&
+              topUsersStats?.map((user) => (
                 <StatsListRow key={user.id} user={user} />
               ))}
-            </tbody>
-          </table>
-        </section>
-      )}
+          </tbody>
+        </table>
+      </section>
     </>
   );
 };

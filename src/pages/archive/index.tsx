@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { api } from "~/utils/api";
 import { atom, useAtom } from "jotai";
 import GameListRow from "~/components/GameListRow";
+import LoadingSpinner from "~/components/LoadingSpinner";
 
 const currentPageAtom = atom<number>(0);
 
@@ -69,6 +70,13 @@ const Archive: NextPage = () => {
             </tr>
           </thead>
           <tbody className="text-xs">
+            {(status === "loading" || isFetchingNextPage) && (
+              <tr className="w-full">
+                <td colSpan={3} className="pt-24">
+                  <LoadingSpinner message="Loading games" />
+                </td>
+              </tr>
+            )}
             {status === "success" &&
               !isFetchingNextPage &&
               filteredGames?.map((game) => (
