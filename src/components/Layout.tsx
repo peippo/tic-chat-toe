@@ -3,6 +3,7 @@ import classNames from "classnames";
 import type { NextFont } from "next/dist/compiled/@next/font";
 import Controls from "./Controls";
 import BatteryMessage from "./BatteryMessage";
+import FadeTransition from "./FadeTransition";
 
 type Props = {
   children: React.ReactNode;
@@ -54,7 +55,7 @@ const Layout: React.FC<Props> = ({ children, font }) => {
             <div className="relative h-96 w-64 rounded-sm border-b border-b-amber-300/30 bg-gradient-to-b from-gray-400 to-gray-500">
               <div className="pointer-events-none absolute inset-0 z-30 h-full w-full bg-amber-400/10 bg-screen-pattern bg-[length:4px_4px] shadow-screen"></div>
               <BatteryMessage />
-              {children}
+              <FadeTransition>{children}</FadeTransition>
             </div>
             <p className="pointer-events-none ml-5 text-center text-lg tracking-tight text-slate-400">
               Tic-<span className="text-purple-400">Chat</span>-Toe
