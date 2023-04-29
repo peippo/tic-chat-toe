@@ -65,9 +65,8 @@ export const playerHasWinningLine = (playerTurns: Pick<Turn, "x" | "y">[]) => {
 export const formatDateTime = (date: Date) =>
   new Intl.DateTimeFormat("en-US", {
     hourCycle: "h23",
-    // weekday: "short",
     day: "numeric",
-    month: "short",
+    month: "numeric",
     hour: "numeric",
     minute: "numeric",
   }).format(date);

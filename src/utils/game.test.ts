@@ -79,6 +79,6 @@ describe("formatDateTime", () => {
           "Wed Jun 30 2021 00:30:22 GMT+0300 (Eastern European Summer Time)"
         )
       )
-    ).toBe("Jun 30, 00:30");
+    ).toBe("6/30, 00:30");
   });
 });
