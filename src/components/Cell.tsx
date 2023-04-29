@@ -43,9 +43,9 @@ const CellComponent: React.FC<Cell & { isViewMode: boolean }> = ({
     return (
       <div
         className={classNames(
-          "pointer-events-none flex h-full items-center justify-center transition-colors duration-500",
+          "pointer-events-none flex h-full items-center justify-center ",
           matchingTurn ? "bg-gray-400 shadow-cell-active" : "shadow-cell",
-          inWinLine && isLastTurn && "text-gray-300"
+          inWinLine && (isLastTurn || isLive) && "text-gray-300"
         )}
       >
         {matchingTurn ? (matchingTurn.isByUser ? "X" : "O") : null}
@@ -60,7 +60,7 @@ const CellComponent: React.FC<Cell & { isViewMode: boolean }> = ({
     return (
       <div
         className={classNames(
-          "pointer-events-none flex h-full items-center justify-center bg-gray-400 shadow-cell-active transition-colors duration-500",
+          "pointer-events-none flex h-full items-center justify-center bg-gray-400 shadow-cell-active ",
           inWinLine && "text-gray-300"
         )}
       >

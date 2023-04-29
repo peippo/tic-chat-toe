@@ -14,7 +14,9 @@ const Stats: NextPage = () => {
       </Head>
       {userStats ? (
         <section className="border-b-4 border-gray-700 bg-gray-600">
-          <h2 className="py-3 text-center text-xs text-gray-300">User stats</h2>
+          <h2 className="py-3 text-center text-xs text-gray-300">
+            Personal stats
+          </h2>
           <div className="flex justify-between">
             <div className="flex w-1/3 flex-col items-center border-r-2 border-gray-400 p-2 text-2xl text-gray-300">
               <h3 className="text-sm">Won</h3> {userStats.games.WON}

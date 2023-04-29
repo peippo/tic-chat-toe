@@ -19,7 +19,7 @@ const TurnSlider = () => {
   if (!turnsCount) return <></>;
 
   return (
-    <div className="absolute -top-3 flex items-center justify-center rounded-sm border-b-4 border-gray-700 bg-gray-400 p-3">
+    <div className="absolute -top-3 flex items-center justify-center rounded-sm border-b-4 border-gray-700 bg-gray-350 p-3">
       <button
         onClick={() => setCurrentTurnNumber(Math.max(currentTurnNumber - 1, 1))}
         className="text-sm tracking-tighter"

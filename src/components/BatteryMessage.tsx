@@ -16,7 +16,7 @@ const BatteryMessage = () => {
 
   return (
     <div className="absolute inset-0 bg-gray-900/50">
-      <div className="absolute inset-5 z-50 flex flex-col items-center justify-center rounded-md border border-b-4 border-gray-900 bg-gray-800 p-4 text-center text-gray-400">
+      <div className="absolute inset-5 z-20 flex flex-col items-center justify-center rounded-md border border-b-4 border-gray-900 bg-gray-800 p-4 text-center text-gray-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 576 512"

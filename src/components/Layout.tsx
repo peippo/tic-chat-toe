@@ -19,7 +19,7 @@ const Layout: React.FC<Props> = ({ children, font }) => {
       </Head>
       <main
         className={classNames(
-          "flex h-screen min-h-screen select-none flex-col items-center justify-center bg-gradient-to-tl from-slate-800 to-slate-600",
+          "flex h-screen min-h-screen select-none flex-col items-center justify-center",
           font.className
         )}
       >
@@ -51,8 +51,8 @@ const Layout: React.FC<Props> = ({ children, font }) => {
             <div className="absolute -bottom-[2px] right-7 h-[2px] w-40 bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400"></div>
 
             {/* screen */}
-            <div className="relative h-96 w-64 rounded-sm border-b border-b-gray-400 bg-gradient-to-b from-gray-400 to-gray-500">
-              <div className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-screen-pattern bg-[length:4px_4px]"></div>
+            <div className="relative h-96 w-64 rounded-sm border-b border-b-amber-300/30 bg-gradient-to-b from-gray-400 to-gray-500">
+              <div className="pointer-events-none absolute inset-0 z-30 h-full w-full bg-amber-400/10 bg-screen-pattern bg-[length:4px_4px] shadow-screen"></div>
               <BatteryMessage />
               {children}
             </div>
@@ -68,13 +68,13 @@ const Layout: React.FC<Props> = ({ children, font }) => {
         <div className="absolute inset-0 h-full w-full overflow-hidden">
           <span
             aria-hidden="true"
-            className="absolute -top-[10vw] left-0 text-[60vw] leading-none text-slate-700/70"
+            className="absolute -top-[10vw] left-0 text-[60vw] leading-none text-slate-700/50"
           >
             X
           </span>
           <span
             aria-hidden="true"
-            className="absolute bottom-0 right-0 text-[60vw] leading-none text-slate-700/70"
+            className="absolute bottom-0 right-0 text-[60vw] leading-none text-slate-700/50"
           >
             O
           </span>

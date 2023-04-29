@@ -111,7 +111,7 @@ export const gameRouter = createTRPCRouter({
       })
     )
     .query(async ({ ctx, input }) => {
-      const limit = 15;
+      const limit = 13;
       const { cursor } = input;
       const lastFiveMinutes = new Date(
         Date.now() - 5 * 60 * 1000
