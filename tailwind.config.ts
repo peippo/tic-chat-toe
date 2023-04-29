@@ -11,6 +11,7 @@ export default {
       },
       backgroundImage: {
         "screen-pattern": "url('/tiny-checkers.svg')",
+        body: "url('/dither-bg.png'), linear-gradient(to top left, #1e293b, #475569)",
       },
       dropShadow: {
         text: "0 1px 1px rgba(0, 0, 0, 0.5)",
