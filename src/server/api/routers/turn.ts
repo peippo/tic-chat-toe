@@ -16,7 +16,6 @@ export const turnRouter = createTRPCRouter({
         gameId: z.string(),
         x: z.number(),
         y: z.number(),
-        comment: z.string().optional(),
       })
     )
     .mutation(({ ctx, input }) => {

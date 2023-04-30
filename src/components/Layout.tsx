@@ -42,8 +42,8 @@ const Layout: React.FC<Props> = ({ children, font }) => {
             <div className="rounded-xs absolute right-[2px] top-[3px] h-2 w-[4px] animate-pulse bg-gradient-to-t from-red-800 via-red-600 to-red-400 shadow-battery duration-[5000]"></div>
           </div>
           {/* reflection */}
-          <div className="pointer-events-none absolute -top-80 right-40 z-30 h-[512px] w-40 rotate-45 bg-gradient-to-t from-cyan-400 via-cyan-500 via-10% to-slate-600 to-70% opacity-30 mix-blend-lighten"></div>
-          <div className="pointer-events-none absolute -top-72 right-40 z-30 h-[512px] w-60 rotate-45 bg-gradient-to-t from-cyan-400 via-cyan-500 via-30% to-slate-600 to-80% opacity-20 mix-blend-lighten"></div>
+          <div className="pointer-events-none absolute -top-80 right-40 z-50 h-[512px] w-40 rotate-45 bg-gradient-to-t from-cyan-400 via-cyan-500 via-10% to-slate-600 to-70% opacity-30 mix-blend-lighten"></div>
+          <div className="pointer-events-none absolute -top-72 right-40 z-50 h-[512px] w-60 rotate-45 bg-gradient-to-t from-cyan-400 via-cyan-500 via-30% to-slate-600 to-80% opacity-20 mix-blend-lighten"></div>
           {/* highlights */}
           <div className="absolute bottom-0 right-0 h-[1px] w-64 bg-gradient-to-r from-purple-400 via-white to-purple-400"></div>
           <div className="absolute left-2 top-0 h-[1px] w-32 bg-gradient-to-r from-purple-700 via-purple-200 via-20% to-purple-700"></div>
@@ -52,8 +52,8 @@ const Layout: React.FC<Props> = ({ children, font }) => {
             <div className="absolute -bottom-[2px] right-7 h-[2px] w-40 bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400"></div>
 
             {/* screen */}
-            <div className="relative h-96 w-64 rounded-sm border-b border-b-amber-300/30 bg-gradient-to-b from-gray-400 to-gray-500">
-              <div className="pointer-events-none absolute inset-0 z-30 h-full w-full bg-amber-400/10 bg-screen-pattern bg-[length:4px_4px] shadow-screen"></div>
+            <div className="relative h-96 w-64 overflow-hidden rounded-sm bg-gradient-to-b from-gray-400 to-gray-500">
+              <div className="pointer-events-none absolute inset-0 z-30 h-full w-full border-b border-b-amber-300/30 bg-amber-400/10 bg-screen-pattern bg-[length:4px_4px] shadow-screen"></div>
               <BatteryMessage />
               <FadeTransition>{children}</FadeTransition>
             </div>
