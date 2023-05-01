@@ -12,7 +12,7 @@ const OpeningTransition = () => {
     setTimeout(() => {
       setIsEntering(true);
     }, timeout);
-  }, [setIsEntering]);
+  }, [setIsEntering, timeout]);
 
   return (
     <Transition timeout={1000} in={isEntering} appear={true} nodeRef={nodeRef}>

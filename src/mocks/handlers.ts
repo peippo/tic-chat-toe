@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { trpcMsw } from "~/utils/api";
 
 export const handlers = [
