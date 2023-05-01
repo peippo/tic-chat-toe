@@ -77,6 +77,7 @@ const Controls = () => {
   const [backPressed, setBackPressed] = useState(false);
   const [selectPressed, setSelectPressed] = useState(false);
 
+  // TODO: button handlers, maybe set via context individually for each page route?
   const handleUp = () => {
     console.log("Up");
   };
@@ -124,6 +125,7 @@ const Controls = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 320 512"
             width="10"
+            aria-hidden="true"
           >
             <path
               fill="currentColor"
@@ -142,6 +144,7 @@ const Controls = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 256 512"
               width="8"
+              aria-hidden="true"
             >
               <path
                 fill="currentColor"
@@ -155,6 +158,7 @@ const Controls = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512"
               width="10"
+              aria-hidden="true"
             >
               <path
                 fill="currentColor"
@@ -172,6 +176,7 @@ const Controls = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 256 512"
               width="8"
+              aria-hidden="true"
             >
               <path
                 fill="currentColor"
@@ -194,6 +199,7 @@ const Controls = () => {
             viewBox="0 0 448 512"
             width="14"
             className="-rotate-45"
+            aria-hidden="true"
           >
             <path
               fill="currentColor"
@@ -211,6 +217,7 @@ const Controls = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
             width="18"
+            aria-hidden="true"
           >
             <path
               fill="currentColor"

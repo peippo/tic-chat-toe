@@ -8,6 +8,7 @@ const LoadingSpinner: React.FC<{ message?: string }> = ({
         viewBox="0 0 512 512"
         width="42"
         className="mb-2 animate-spin text-gray-600"
+        aria-hidden="true"
       >
         <path
           fill="currentColor"

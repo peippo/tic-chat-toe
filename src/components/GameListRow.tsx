@@ -33,6 +33,7 @@ const GameListRow: React.FC<{ game: GameWithUser }> = ({ game }) => {
       </td>
       <td className="px-2 text-left" onClick={() => void router.push(rowLink)}>
         <Link href={rowLink} className="whitespace-nowrap">
+          <span className="sr-only">View game played at: </span>
           {formatDateTime(game.createdAt)}
         </Link>
       </td>

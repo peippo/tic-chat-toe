@@ -26,10 +26,14 @@ const TurnSlider = () => {
         className="text-sm tracking-tighter"
       >
         <span className="sr-only">View previous turn</span>
-        &lt;&lt;
+        <span aria-hidden="true">&lt;&lt;</span>
       </button>
       <div className="relative flex items-center px-2">
+        <label className="sr-only" htmlFor="turn-slider">
+          Browse game turns
+        </label>
         <input
+          id="turn-slider"
           type="range"
           min="1"
           max={turnsCount}
@@ -58,7 +62,7 @@ const TurnSlider = () => {
         className="text-sm tracking-tighter"
       >
         <span className="sr-only">View next turn</span>
-        &gt;&gt;
+        <span aria-hidden="true">&gt;&gt;</span>
       </button>
     </div>
   );

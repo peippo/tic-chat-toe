@@ -29,6 +29,7 @@ const ErrorMessage = () => {
           viewBox="0 0 448 512"
           width="48"
           className="mx-auto mb-5"
+          aria-hidden="true"
         >
           <path
             fill="currentColor"

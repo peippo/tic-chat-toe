@@ -13,6 +13,9 @@ const Stats: NextPage = () => {
       <Head>
         <title>Statistics</title>
       </Head>
+
+      <h1 className="sr-only">Statistics</h1>
+
       {userStats ? (
         <section className="border-b-4 border-gray-700 bg-gray-600">
           <h2 className="py-3 text-center text-xs text-gray-300">
@@ -38,6 +41,7 @@ const Stats: NextPage = () => {
               viewBox="0 0 448 512"
               width="10"
               className="mr-2"
+              aria-hidden="true"
             >
               <path
                 fill="currentColor"

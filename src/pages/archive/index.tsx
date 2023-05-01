@@ -51,9 +51,9 @@ const Archive: NextPage = () => {
       </Head>
       <div className="flex h-full flex-col justify-between">
         <div className="bg-gray-600">
-          <h2 className="py-3 text-center text-xs text-gray-300">
+          <h1 className="py-3 text-center text-xs text-gray-300">
             Games archive
-          </h2>
+          </h1>
         </div>
         <table className="mb-auto mt-0 w-full">
           <thead>
@@ -86,7 +86,10 @@ const Archive: NextPage = () => {
         </table>
 
         {(hasPreviousPage || hasNextPage) && (
-          <div className="mt-4 flex justify-between">
+          <nav
+            className="mt-4 flex justify-between"
+            aria-label="Page navigation"
+          >
             {hasPreviousPage && (
               <button
                 className="m-3 flex h-9 w-9 items-center justify-center rounded-lg bg-gray-350 text-center text-gray-800 drop-shadow-button transition hover:bg-gray-350/80"
@@ -97,6 +100,7 @@ const Archive: NextPage = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
                   width="14"
+                  aria-hidden="true"
                 >
                   <path
                     fill="currentColor"
@@ -115,6 +119,7 @@ const Archive: NextPage = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
                   width="14"
+                  aria-hidden="true"
                 >
                   <path
                     fill="currentColor"
@@ -123,7 +128,7 @@ const Archive: NextPage = () => {
                 </svg>
               </button>
             )}
-          </div>
+          </nav>
         )}
       </div>
     </>

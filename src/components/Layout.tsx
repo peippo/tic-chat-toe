@@ -41,6 +41,7 @@ const Layout: React.FC<Props> = ({ children, font }) => {
             viewBox="0 0 448 512"
             width="10"
             className="absolute right-[9px] top-8 text-amber-300 shadow-sm"
+            aria-hidden="true"
           >
             <path
               fill="currentColor"
