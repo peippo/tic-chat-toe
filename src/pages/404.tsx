@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Custom404 = () => {
   return (
     <div className="absolute inset-0 z-20 flex flex-col items-center justify-center rounded-md border border-b-4 border-gray-900 bg-gray-800 p-4 text-center text-gray-400">
@@ -19,12 +21,12 @@ const Custom404 = () => {
         <br />
         You have reached an unknown screen
       </p>
-      <a
+      <Link
         className="mt-5 w-32 rounded-lg bg-gray-400 py-3 text-center text-sm text-gray-800 no-underline drop-shadow-button transition hover:bg-gray-400/80"
         href="/"
       >
         Reset game
-      </a>
+      </Link>
     </div>
   );
 };

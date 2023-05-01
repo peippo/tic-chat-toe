@@ -97,11 +97,11 @@ const Controls = () => {
     console.log("Right");
   };
 
-  const handleBack = async () => {
+  const handleBack = () => {
     if (router.pathname.includes("view")) {
-      await router.push("/archive");
+      void router.push("/archive");
     } else if (router.pathname !== "/") {
-      await router.push("/");
+      void router.push("/");
     }
   };
 
