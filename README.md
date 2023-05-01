@@ -1,6 +1,6 @@
 <img src="https://tic-chat-toe.vercel.app/banner.png" alt="Banner image">
 
-A tic-tac-toe game built for [Twoday](https://www.twoday.fi/) coding challenge. Opponent moves and comments are prompted from ChatGPT.
+A tic-tac-toe game built for [Twoday](https://www.twoday.com/) coding challenge. Opponent moves and comments are prompted from ChatGPT.
 
 Other features include viewing other players' ongoing games live & past games turn-by-turn, player statistics and ability to delete your own games.
 
