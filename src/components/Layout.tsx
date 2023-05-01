@@ -17,6 +17,15 @@ const Layout: React.FC<Props> = ({ children, font }) => {
         <title>Tic-Chat-Toe</title>
         <meta name="description" content="Play Tic-Tac-Toe with ChatGPT" />
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:image"
+          content="https://tic-chat-toe.vercel.app/share.png"
+        />
+        <meta
+          property="twitter:image"
+          content="https://tic-chat-toe.vercel.app/share.png"
+        />
+        <meta property="twitter:card" content="summary_large_image" />
       </Head>
       <main
         className={classNames(
