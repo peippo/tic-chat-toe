@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import useGame from "~/hooks/useGame";
+import classNames from "classnames";
 import { atom, useAtom } from "jotai";
+import useGame from "~/hooks/useGame";
 
 export const currentTurnNumberAtom = atom(1);
 
@@ -35,14 +36,17 @@ const TurnSlider = () => {
           step="1"
           value={currentTurnNumber}
           onChange={(event) => setCurrentTurnNumber(Number(event.target.value))}
-          className="relative z-10 h-1 max-w-[10rem] cursor-pointer appearance-none bg-gray-600 accent-gray-800 hover:accent-gray-800"
+          className="relative z-10 h-1 max-w-[10rem] cursor-pointer appearance-none bg-gray-700 accent-gray-800 hover:accent-gray-800"
         />
 
-        <div className="absolute inset-0 flex items-center justify-between px-5">
+        <div className="absolute inset-0 flex items-center justify-between px-4">
           {Array.from({ length: turnsCount }, (_, i) => (
             <span
               key={i}
-              className="block h-4 w-[1px] border-l border-r border-gray-600"
+              className={classNames(
+                "relative block h-4 w-[1px] border-l border-r border-gray-700",
+                "after:absolute after:left-1/2 after:top-1/2 after:block after:h-2 after:w-2 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-gray-700"
+              )}
             ></span>
           ))}
         </div>
