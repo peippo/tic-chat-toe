@@ -4,10 +4,11 @@
  *
  * We also create a few inference helpers for input and output types.
  */
-import { httpBatchLink, loggerLink } from "@trpc/client";
+import { httpBatchLink, httpLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
 import superjson from "superjson";
+import { createTRPCMsw } from "msw-trpc";
 
 import { type AppRouter } from "~/server/api/root";
 
@@ -39,9 +40,13 @@ export const api = createTRPCNext<AppRouter>({
             process.env.NODE_ENV === "development" ||
             (opts.direction === "down" && opts.result instanceof Error),
         }),
-        httpBatchLink({
-          url: `${getBaseUrl()}/api/trpc`,
-        }),
+        process.env.NEXT_PUBLIC_API_MODE === "mock"
+          ? httpLink({
+              url: `${getBaseUrl()}/api/trpc`,
+            })
+          : httpBatchLink({
+              url: `${getBaseUrl()}/api/trpc`,
+            }),
       ],
     };
   },
@@ -66,3 +71,13 @@ export type RouterInputs = inferRouterInputs<AppRouter>;
  * @example type HelloOutput = RouterOutputs['example']['hello']
  */
 export type RouterOutputs = inferRouterOutputs<AppRouter>;
+
+/**
+ * Mock Service Worker TRPC support
+ */
+export const trpcMsw = createTRPCMsw<AppRouter>({
+  transformer: {
+    input: superjson,
+    output: superjson,
+  },
+});

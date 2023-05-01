@@ -14,6 +14,10 @@ const silkscreen = Silkscreen({
   weight: "400",
 });
 
+if (process.env.NEXT_PUBLIC_API_MODE === "mock") {
+  require("../mocks");
+}
+
 const App: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },

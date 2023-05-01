@@ -5,12 +5,13 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "dev:test": "NEXT_PUBLIC_API_MODE=mock next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
-    "test": "npx vitest",
-    "test:ui": "npx vitest --ui",
-    "reset:db": "npx prisma db push --force-reset && npx prisma db seed"
+    "test": "echo \"\\x1b[30m\\x1b[103m Make sure you are running Next with 'yarn dev:test' \\x1b[0m\" && npx vitest",
+    "test:ui": "echo \"\\x1b[30m\\x1b[103m Make sure you are running Next with 'yarn dev:test' \\x1b[0m\" && npx vitest --ui",
+    "reset:db": "npx prisma db push --force-reset && npx prisma db seed",
     "playwright:gen": "npx playwright codegen localhost:3000"
   },
   "prisma": {
@@ -70,5 +71,8 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.10.3"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
