@@ -2,6 +2,7 @@ import { useState } from "react";
 import classNames from "classnames";
 import { useKeyPress } from "~/hooks/useKeyPress";
 import { keyBindings } from "~/utils/keybindings";
+import { useRouter } from "next/router";
 
 const DirectionButton: React.FC<{
   children: React.ReactNode;
@@ -70,6 +71,8 @@ const ActionButton: React.FC<{
 };
 
 const Controls = () => {
+  const router = useRouter();
+
   const [upPressed, setUpPressed] = useState(false);
   const [downPressed, setDownPressed] = useState(false);
   const [leftPressed, setLeftPressed] = useState(false);
@@ -94,8 +97,12 @@ const Controls = () => {
     console.log("Right");
   };
 
-  const handleBack = () => {
-    console.log("Back");
+  const handleBack = async () => {
+    if (router.pathname.includes("view")) {
+      await router.push("/archive");
+    } else if (router.pathname !== "/") {
+      await router.push("/");
+    }
   };
 
   const handleSelect = () => {
