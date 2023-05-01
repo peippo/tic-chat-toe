@@ -74,6 +74,12 @@ const Layout: React.FC<Props> = ({ children, font }) => {
           </div>
           <Controls />
         </div>
+        <a
+          className="z-50 mt-4 text-xs text-slate-500 hover:text-slate-400"
+          href="https://www.github.com/peippo/tic-chat-toe"
+        >
+          GitHub
+        </a>
 
         {/* background elements */}
         <div className="absolute inset-0 h-full w-full overflow-hidden">
