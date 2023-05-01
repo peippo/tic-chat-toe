@@ -206,7 +206,7 @@ const Controls = () => {
           onClickHandler={handleSelect}
           isPressed={selectPressed}
         >
-          <span className="sr-only">Ok</span>
+          <span className="sr-only">Select</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"

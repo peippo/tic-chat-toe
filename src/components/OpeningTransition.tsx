@@ -6,10 +6,12 @@ const OpeningTransition = () => {
   const [isEntering, setIsEntering] = useState(false);
   const nodeRef = useRef(null);
 
+  const timeout = process.env.NEXT_PUBLIC_API_MODE === "mock" ? 0 : 2000;
+
   useEffect(() => {
     setTimeout(() => {
       setIsEntering(true);
-    }, 2000);
+    }, timeout);
   }, [setIsEntering]);
 
   return (
